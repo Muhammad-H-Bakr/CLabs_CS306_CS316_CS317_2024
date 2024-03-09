@@ -1,1 +1,1 @@
-# CLabs_CS306_CS316_CS317_2024
+# C/C++ Labs : OS (C/CS306)/ FileStructure (C++/CS316)/ Distribued Systems (C++/CS317).
