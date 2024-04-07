@@ -9,7 +9,7 @@ struct P {
     int finish_T;
     int remain_T;
     __attribute__((unused)) int wait_T;
-    bool queue; //A flag that is later used to identify whether a process has entered the CPU or not.
+    bool queue;
 };
 
 int firstArrive(struct P *, int);
@@ -18,7 +18,11 @@ int minTime(struct P *, int);
 
 void enqueue(struct P *, int, int);
 
-double avgWaitTime(struct P *arr, int size, int total) {
+double avgWaitTime(struct P *arr, int size) {
+    int total = 0; //Get the total time of performance.
+    for (int i = 0; i < size; i++) {
+        total += arr[i].burst_T;
+    }
     int begin = firstArrive(arr, size), end = begin + total, curr;
     for (int i = begin; i < end; i++) { //Sys_T = 0 -> Sys_T = the last second of performance.
         enqueue(arr, size, i); //A new process has entered at this second?
@@ -29,6 +33,8 @@ double avgWaitTime(struct P *arr, int size, int total) {
                 arr[curr].queue = false; //Get it out of the queue.
                 arr[curr].finish_T = i + 1; //Assign its finish time.
             }
+            printf("Sys_T: %d, process %d's RMTime: %d\n",
+                   i, curr, arr[curr].remain_T); //For debugging (Remove if not needed).
         }
     }
     int sumTime = 0;
@@ -82,16 +88,14 @@ int main() {
     printf("Enter the number of processes: \n");
     scanf("%d", &size); // NOLINT(*-err34-c)
     struct P *arr = (struct P *) malloc(size * sizeof(struct P));
-    int total_Time = 0;
     for (int i = 0; i < size; i++) {
         arr[i].p_id = i;
         printf("Enter arrival time for process %d:\n", i);
         scanf("%d", &arr[i].arrival_T); // NOLINT(*-err34-c)
         printf("Enter burst time for process %d:\n", i);
         scanf("%d", &arr[i].burst_T); // NOLINT(*-err34-c)
-        total_Time += arr[i].burst_T;
         arr[i].remain_T = arr[i].burst_T;
     }
-    printf("Average Waiting time is: %f\n", avgWaitTime(arr, size, total_Time));
+    printf("Average Waiting time is: %f\n", avgWaitTime(arr, size));
     return 0;
 }
