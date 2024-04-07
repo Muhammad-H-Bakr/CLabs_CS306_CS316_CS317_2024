@@ -29,7 +29,6 @@ double avgWaitTime(struct P *arr, int size, int total) {
                 arr[curr].queue = false; //Get it out of the queue.
                 arr[curr].finish_T = i + 1; //Assign its finish time.
             }
-            printf("Sys_T: %d, process %d's RMTime: %d\n", i, curr, arr[curr].remain_T);
         }
     }
     int sumTime = 0;
