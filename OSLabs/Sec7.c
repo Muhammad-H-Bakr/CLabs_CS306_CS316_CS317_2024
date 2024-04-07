@@ -9,7 +9,7 @@ struct P {
     int finish_T;
     int remain_T;
     __attribute__((unused)) int wait_T;
-    bool queue;
+    bool queue; //A flag that is later used to identify whether a process has entered the CPU or not.
 };
 
 int firstArrive(struct P *, int);
