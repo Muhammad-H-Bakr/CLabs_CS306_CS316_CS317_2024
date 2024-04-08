@@ -29,7 +29,7 @@ double avgWaitTime(struct P *arr, int size) {
         curr = minTime(arr, size); //Search for the minimum process index in terms of Remain_T.
         if (curr != -1) { //A process Found.
             arr[curr].remain_T -= 1; //Reduce its time.
-            if (arr[curr].remain_T <= 0) { //Check if it finished.
+            if (arr[curr].remain_T == 0) { //Check if it finished.
                 arr[curr].queue = false; //Get it out of the queue.
                 arr[curr].finish_T = i + 1; //Assign its finish time.
             }
