@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
+#include <stdbool.h> //Include to use boolean datatype.
 
 struct P {
     __attribute__((unused)) int p_id;
@@ -9,7 +9,7 @@ struct P {
     int finish_T;
     int remain_T;
     __attribute__((unused)) int wait_T;
-    bool queue;
+    bool queue; //A flag that is later used to identify whether a process is to be "queued" or not.
 };
 
 int firstArrive(struct P *, int);
@@ -65,7 +65,7 @@ int minTime(struct P *arr, int size) { //Checks for current minimum in the proce
     }
     for (int i = 0; i < size; i++) {
         /*Does this process have undone work? is that work less than current? and is it
-         even in the queue or not*/
+         even in the queue or not?*/
         if (arr[i].remain_T != 0 && time > arr[i].remain_T && arr[i].queue) {
             time = arr[i].remain_T;
             index = i;
