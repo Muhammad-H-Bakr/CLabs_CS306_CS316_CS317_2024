@@ -51,6 +51,7 @@ int main(int argc, char **argv) {
             }
         }
     }
+    
     /* Begin Time Calculation */
     MPI_Barrier(MPI_COMM_WORLD);
     double start = MPI_Wtime();
@@ -59,6 +60,7 @@ int main(int argc, char **argv) {
     MPI_Bcast(&A_row, 1, MPI_INT, 0, MPI_COMM_WORLD);
     MPI_Bcast(&A_col, 1, MPI_INT, 0, MPI_COMM_WORLD);
     MPI_Bcast(&strip_size, 1, MPI_INT, 0, MPI_COMM_WORLD);
+    
     /* Initialize Matrix B */
     stripdata = (double *) malloc(sizeof(double) * strip_size * A_col);
     strip_A = (double **) malloc(sizeof(double *) * strip_size);
