@@ -93,7 +93,7 @@ int main(int argc, char **argv) {
             exit(-1);
         }
 
-        if (A_col % size != 0) {
+        if (A_row % size != 0) {
             cerr << "Matrix can NOT be parallelized" << endl;
             exit(-1);
         }
